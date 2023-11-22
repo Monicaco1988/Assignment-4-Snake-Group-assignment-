@@ -4,17 +4,27 @@
 class Apple // User: Edmin
 {
 public:
+	
 	int x;
 	int y;
-	Point2D circlePosition = Point2D(x,y);
+	Point2D circlePosition;
 
-	void Draw(int x,int y)
+	Apple(int x, int y) // constructor 
 	{
-		Play::DrawCircle(circlePosition, 20,Play::cRed);
-		
+		this->x = x;
+		this->y = x;
+		circlePosition = { x,y };
 	};
+
+	Apple()  // default constructor
+	{
+		this->x = rand() % (640 - 0 + 1) + 0;
+		this->y = rand() % (320 - 0 + 1) + 0;
+		circlePosition = { x,y };
+	};
+	
+	void Draw();
+
 };
 
-int DISPLAY_WIDTH = 640;
-int DISPLAY_HEIGHT = 360;
-int DISPLAY_SCALE = 2;
+
