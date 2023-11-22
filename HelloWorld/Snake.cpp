@@ -40,14 +40,27 @@ void Snake::HandleInput()
 	//Play::UpdateGameObject(obj_agent8);
 }
 
-/*
-Move() - Loops over the snake parts in reverse (skipping the part at index 0) and 
-updates the positions of the parts to be the "next" elements position. 
-Ex. the snake part at index 6 will take the position of the part at index 5, 
-which takes the position of the part at index 4, etc.
-Moves the part at index 0 (head) along the heading of the snake by updating its position.
-*/
+//Move() - Loops over the snake parts in reverse (skipping the part at index 0) and 
+//updates the positions of the parts to be the "next" elements position. 
+//Ex. the snake part at index 6 will take the position of the part at index 5, 
+//which takes the position of the part at index 4, etc.
+//Moves the part at index 0 (head) along the heading of the snake by updating its position.
 void Snake::Move()
 {
 
 }
+//fix constructor definition
+Snake::Snake()
+{
+	heading = {1,0,0,0};//north, south,east,west google enum class c++
+	snakeBody = new SnakeBody[2];
+	snakeBodySize = 7;
+	//do more?
+	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
+			/*constructor
+			The constructor should automatically setup the snake to have two initial snake parts.
+			Make sure you also create a destructor that deletes any allocated memory.
+			*/
+}
+
+// User-Defined Destructor
