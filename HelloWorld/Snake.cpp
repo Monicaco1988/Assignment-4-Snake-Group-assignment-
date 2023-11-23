@@ -1,6 +1,8 @@
 #include "Snake.h"
 #include "game.h"
 #define PLAY_IMPLEMENTATION
+//defines how many pixels the snake should move when the snakes moves
+int pixelsPerFrame = 20;
 //define class methods, author: gregitator:
 //"Loops over all the snake parts and draws them"
 void Snake::Draw()
@@ -25,7 +27,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			}
 			else
 			{
-				snakeBody[i].position -= {0, 20};
+				snakeBody[i].position -= {0, pixelsPerFrame};
 			}
 
 		}
@@ -42,7 +44,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			}
 			else
 			{
-				snakeBody[i].position += {0, 20};
+				snakeBody[i].position += {0, pixelsPerFrame};
 			}
 
 		}
@@ -59,7 +61,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			}
 			else
 			{
-				snakeBody[i].position += {20, 0};
+				snakeBody[i].position += {pixelsPerFrame, 0};
 			}
 			
 		}
@@ -74,13 +76,40 @@ void Snake::HandleInput()//user Björn fixed movement
 			}
 			else
 			{
-				snakeBody[i].position -= {20, 0};
+				snakeBody[i].position -= {pixelsPerFrame, 0};
 			}
 
 		}
 	}
 	else
 	{
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				if (heading == Heading::north)
+				{
+					snakeBody[i].position -= {0, pixelsPerFrame};
+				}
+				else if(heading == Heading::south)
+				{
+					snakeBody[i].position += {0, pixelsPerFrame};
+				}
+				else if (heading == Heading::west)
+				{
+					snakeBody[i].position -= {pixelsPerFrame, 0};
+				}
+				else if (heading == Heading::east)
+				{
+					snakeBody[i].position += {pixelsPerFrame, 0};
+				}
+
+			}
+
+		}
 		//Play::SetSprite(obj_agent8, "agent8_hang", 0.02f);
 		//obj_agent8.velocity *= 0.5f;
 		//obj_agent8.acceleration = { 0, 0 };

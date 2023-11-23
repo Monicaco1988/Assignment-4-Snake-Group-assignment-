@@ -8,7 +8,7 @@ private:
 public:
 	Point2D position;
 	SnakeBody() {
-		position = { 640 / 2, 360 / 2 };
+		position = { 620 / 2, 340 / 2 };
 		
 	}
 	~SnakeBody() {

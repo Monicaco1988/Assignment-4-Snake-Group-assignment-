@@ -6,7 +6,7 @@
 int DISPLAY_WIDTH = 640;
 int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
-
+int frameCount = 0;
 Snake snake = Snake();
 
 // The entry point for a PlayBuffer program
@@ -19,12 +19,16 @@ void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer(Play::cBlack);
-		
+
 	SpawnApple();
 	snake.Draw();
-	snake.HandleInput();
-	snake.Move();
+	if (frameCount >= 6) {
+		snake.HandleInput();
+		snake.Move();
+		frameCount = 0;
+	}
 	Play::PresentDrawingBuffer();
+	frameCount++;
 	return Play::KeyDown( VK_ESCAPE );
 }
 
