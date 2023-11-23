@@ -8,6 +8,7 @@ int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
 
 
+
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
@@ -15,15 +16,11 @@ void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 }
 
 // Called by PlayBuffer every frame (60 times a second!)
-bool MainGameUpdate( float elapsedTime )
+bool MainGameUpdate(float elapsedTime)
 {
-	Play::ClearDrawingBuffer( Play::cBlack );
-
-
-	Apple apple = Apple(); // definiera apple som constr.
+	Play::ClearDrawingBuffer(Play::cBlack);
 	
-	apple.Draw();
-
+	SpawnApple();
 
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
