@@ -51,32 +51,35 @@ void Snake::HandleInput()
 //Moves the part at index 0 (head) along the heading of the snake by updating its position.
 void Snake::Move()
 {
-	/*for (int i = snakeBodySize - 1; i > 0; i++) {
+	for (int i = snakeBodySize - 1; i > 0; i--) {
 		snakeBody[i] = snakeBody[i - 1];
-		if (index 0) //move head
+		if (i==1) //move head
 		{
 			//north
 			if (heading == Heading::north) 
 			{
-				snakeBody[i] = move;
+				//snakeBody[i].position.y-=20;//one grid up movement
 				//move head north.
+				snakeBody[i].position = normalize({ 1, -1 }) * 2;
 			}
-			if (heading == Heading::south) 
+			if (heading == Heading::south)
 			{
-				snakeBody[i] = move;
+				snakeBody[i].position.y+=20;
 				//move head south.
 			}
 			if (heading == Heading::west) {
-				snakeBody[i] = move;
+				snakeBody[i].position.x-= 20;
 				//move head west.
 			}
 			if (heading == Heading::east) {
-				snakeBody[i] = move;
+				snakeBody[i].position.x+=20;
 				//move head east.
 			}
 		}
+
+		Play::UpdateGameObject(snakeBody[i]);
 	}
-	*/
+	
 }
 //constructor definition
 Snake::Snake()
@@ -92,6 +95,10 @@ Snake::Snake()
 	{
 		snakeBody[i] = SnakeBody(); //new SnakeBody[i];
 	}
+	//set position of tail snakePart
+	snakeBody[1].position.y += 20;//tail to south one grid: y increases means go down
+	//snakeBody[0].position = normalize({1, -1}) * 2;
+	
 	//do more?
 	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
 			/*constructor

@@ -22,6 +22,8 @@ bool MainGameUpdate(float elapsedTime)
 		
 	SpawnApple();
 	snake.Draw();
+	snake.HandleInput();
+	snake.Move();
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
 }
