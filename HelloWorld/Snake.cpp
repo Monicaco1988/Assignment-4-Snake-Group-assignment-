@@ -11,7 +11,7 @@ void Snake::Draw()
 	}
 }
 //"Checks for user input via the arrow keys, and sets the heading of the snake"
-void Snake::HandleInput()
+void Snake::HandleInput()//user Björn fixed movement
 {
 	// find enum or...
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);

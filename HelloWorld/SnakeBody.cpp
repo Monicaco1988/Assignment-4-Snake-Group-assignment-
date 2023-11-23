@@ -2,7 +2,7 @@
 #include "Play.h"
 #define PLAY_IMPLEMENTATION
 
-void DrawSnakeParts(SnakeBody snakeBody, int multiplierDistans) {
+void DrawSnakeParts(SnakeBody snakeBody, int multiplierDistans) {//User Björn
 
 	Point2D temp = snakeBody.position;
 	temp += {20 * multiplierDistans, 0};

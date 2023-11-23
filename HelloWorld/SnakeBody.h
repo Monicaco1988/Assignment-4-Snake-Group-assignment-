@@ -1,7 +1,7 @@
 #pragma once
 #include "Play.h"
 //When declaring an SnakeBody array declare a new SnakeBody in each position in the array
-class SnakeBody
+class SnakeBody // user Björn
 {
 private:
 	Play::Colour colour = {float(Play::RandomRollRange(0, 256)),float(Play::RandomRollRange(0, 256)) ,float(Play::RandomRollRange(0, 256)) };
