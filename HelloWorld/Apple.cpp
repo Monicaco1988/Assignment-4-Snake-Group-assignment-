@@ -14,7 +14,7 @@ void SpawnApple()
 	Apple apple = Apple(posX, posY); // definiera apple som object från constr.
 	apple.Draw();
 
-	if (Play::KeyPressed(VK_UP))
+	if (Play::KeyPressed(VK_SPACE))
 	{
 		Apple apple = Apple(); // definiera apple som object från constr.
 		apple.Draw();

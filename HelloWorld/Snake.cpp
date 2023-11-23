@@ -18,22 +18,66 @@ void Snake::HandleInput()
 	if (Play::KeyDown(VK_UP))
 	{
 		heading = Heading::north; 
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position -= {0, 20};
+			}
+
+		}
 		//obj_agent8.velocity = { 0, -4 };
 		//Play::SetSprite(obj_agent8, "agent8_climb", 0.25f);
 	}
 	else if (Play::KeyDown(VK_DOWN))
 	{
 		heading = Heading::south;
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position += {0, 20};
+			}
+
+		}
 		//obj_agent8.acceleration = { 0, 1 };
 		//Play::SetSprite(obj_agent8, "agent8_fall", 0);
 	}
 	else if (Play::KeyDown(VK_RIGHT))
 	{
 		heading = Heading::east;
+		for (int i = snakeBodySize-1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position += {20, 0};
+			}
+			
+		}
 	}
 	else if (Play::KeyDown(VK_LEFT))
 	{
 		heading = Heading::west;
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position -= {20, 0};
+			}
+
+		}
 	}
 	else
 	{
@@ -60,7 +104,7 @@ void Snake::Move()
 			{
 				//snakeBody[i].position.y-=20;//one grid up movement
 				//move head north.
-				snakeBody[i].position = normalize({ 1, -1 }) * 2;
+				snakeBody[i].position.y -= 20;
 			}
 			if (heading == Heading::south)
 			{
@@ -77,7 +121,6 @@ void Snake::Move()
 			}
 		}
 
-		Play::UpdateGameObject(snakeBody[i]);
 	}
 	
 }
