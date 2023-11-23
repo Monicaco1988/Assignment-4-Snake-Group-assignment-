@@ -1,11 +1,24 @@
 #include "Apple.h"
+// User Edmin 
+int posX = 10; // User Edmin Initierar äpplet längst upp till höger
+int posY = 10;
 
-void Apple::Draw() // User Edmin 
+void Apple::Draw() 
 {
 	Play::DrawCircle(circlePosition, 10, Play::cRed);
 };
 
-void Apple::Draw2() // User Edmin 
+void SpawnApple()
 {
-	Play::DrawCircle(circlePosition, 10, Play::cWhite);
+
+	Apple apple = Apple(posX, posY); // definiera apple som object från constr.
+	apple.Draw();
+
+	if (Play::KeyPressed(VK_UP))
+	{
+		Apple apple = Apple(); // definiera apple som object från constr.
+		apple.Draw();
+		posX = apple.x;
+		posY = apple.y;
+	}
 };
