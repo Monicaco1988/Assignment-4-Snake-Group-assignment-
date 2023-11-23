@@ -203,6 +203,7 @@
     <ClInclude Include="..\Play.h" />
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeBody.h" />
   </ItemGroup>
