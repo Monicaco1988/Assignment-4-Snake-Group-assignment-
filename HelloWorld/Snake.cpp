@@ -153,6 +153,23 @@ void Snake::Move()
 	}
 	
 }
+
+/*author: gregitator=Johan:
+"Adds a part to the part array by reallocating the array with one more part,
+copying the content of the old array to the new array, and setting the
+position of the newest part to the same position as the next to last element."
+*/
+void Snake::AddPart()
+{
+	SnakeBody* newArr = new SnakeBody[snakeBodySize + 1];
+	std::copy(snakeBody, snakeBody + std::min(snakeBodySize, snakeBodySize + 1), newArr);
+	delete[] snakeBody;
+	snakeBody = newArr;
+	snakeBodySize++;
+	snakeBody[snakeBodySize].position = snakeBody[snakeBodySize - 1].position;
+}
+
+
 //constructor definition
 Snake::Snake()
 {
