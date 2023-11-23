@@ -17,7 +17,7 @@ void Snake::HandleInput()//user Björn fixed movement
 {
 	// find enum or...
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);
-	if (Play::KeyDown(VK_UP))
+	if (Play::KeyDown(VK_UP) && snakeBody[0].position.y >= snakeBody[1].position.y) // Added a feature that the snake can't return
 	{
 		heading = Heading::north; 
 		for (int i = snakeBodySize - 1; i >= 0; i--)
@@ -34,7 +34,7 @@ void Snake::HandleInput()//user Björn fixed movement
 		//obj_agent8.velocity = { 0, -4 };
 		//Play::SetSprite(obj_agent8, "agent8_climb", 0.25f);
 	}
-	else if (Play::KeyDown(VK_DOWN))
+	else if (Play::KeyDown(VK_DOWN) && snakeBody[0].position.y <= snakeBody[1].position.y)
 	{
 		heading = Heading::south;
 		for (int i = snakeBodySize - 1; i >= 0; i--)
@@ -51,7 +51,7 @@ void Snake::HandleInput()//user Björn fixed movement
 		//obj_agent8.acceleration = { 0, 1 };
 		//Play::SetSprite(obj_agent8, "agent8_fall", 0);
 	}
-	else if (Play::KeyDown(VK_RIGHT))
+	else if (Play::KeyDown(VK_RIGHT) && snakeBody[0].position.x <= snakeBody[1].position.x)
 	{
 		heading = Heading::east;
 		for (int i = snakeBodySize-1; i >= 0; i--)
@@ -66,7 +66,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			
 		}
 	}
-	else if (Play::KeyDown(VK_LEFT))
+	else if (Play::KeyDown(VK_LEFT) && snakeBody[0].position.x >= snakeBody[1].position.x)
 	{
 		heading = Heading::west;
 		for (int i = snakeBodySize - 1; i >= 0; i--)
@@ -95,18 +95,18 @@ void Snake::HandleInput()//user Björn fixed movement
 				{
 					snakeBody[i].position -= {0, pixelsPerFrame};
 
-					if (snakeBody[i].position.y < 10) // User Edmin
+					if (snakeBody[0].position.y <= 10) // User Edmin
 					{
-						snakeBody[i].position = { snakeBody[i].position.x, 350 };
+						snakeBody[0].position = { snakeBody[0].position.x, 350 };
 					};
 				}
 				else if(heading == Heading::south)
 				{
 					snakeBody[i].position += {0, pixelsPerFrame};
 					
-					if (snakeBody[i].position.y > 350) // User Edmin
+					if (snakeBody[0].position.y > 330) // User Edmin
 					{
-						snakeBody[i].position = { snakeBody[i].position.x, 10 };
+						snakeBody[0].position = { snakeBody[0].position.x, 10 };
 					};
 				}
 
@@ -114,9 +114,9 @@ void Snake::HandleInput()//user Björn fixed movement
 				{
 					snakeBody[i].position -= {pixelsPerFrame, 0};
 					
-					if (snakeBody[i].position.x < 10) // User Edmin
+					if (snakeBody[0].position.x <= 10) // User Edmin
 					{
-						snakeBody[i].position = {650, snakeBody[i].position.y};
+						snakeBody[0].position = {630, snakeBody[i].position.y};
 					};
 				}
 				else if (heading == Heading::east)
@@ -124,9 +124,9 @@ void Snake::HandleInput()//user Björn fixed movement
 					snakeBody[i].position += {pixelsPerFrame, 0};
 				}
 
-				if (snakeBody[i].position.x > 650) // User Edmin
+				if (snakeBody[0].position.x > 630) // User Edmin
 				{
-					snakeBody[i].position = { 10, snakeBody[i].position.y };
+					snakeBody[0].position = { 10, snakeBody[i].position.y };
 				};
 			}
 

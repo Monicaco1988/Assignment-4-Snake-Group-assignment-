@@ -9,7 +9,6 @@ public:
 	Point2D position;
 	SnakeBody() {
 		position = { 620 / 2, 340 / 2 };
-		
 	}
 	~SnakeBody() {
 

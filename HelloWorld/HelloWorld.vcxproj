@@ -191,7 +191,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
-    <ClCompile Include="Enum.cpp" />
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -202,7 +201,6 @@
   <ItemGroup>
     <ClInclude Include="..\Play.h" />
     <ClInclude Include="Apple.h" />
-    <ClInclude Include="Enum.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeBody.h" />
