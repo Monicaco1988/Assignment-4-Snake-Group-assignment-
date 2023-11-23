@@ -14,22 +14,23 @@ void Snake::HandleInput()
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);
 	if (Play::KeyDown(VK_UP))
 	{
-
+		heading = Heading::north; 
 		//obj_agent8.velocity = { 0, -4 };
 		//Play::SetSprite(obj_agent8, "agent8_climb", 0.25f);
 	}
 	else if (Play::KeyDown(VK_DOWN))
 	{
+		heading = Heading::south;
 		//obj_agent8.acceleration = { 0, 1 };
 		//Play::SetSprite(obj_agent8, "agent8_fall", 0);
 	}
 	else if (Play::KeyDown(VK_RIGHT))
 	{
-	
+		heading = Heading::east;
 	}
 	else if (Play::KeyDown(VK_LEFT))
 	{
-
+		heading = Heading::west;
 	}
 	else
 	{
@@ -49,11 +50,14 @@ void Snake::Move()
 {
 
 }
-//fix constructor definition
+//constructor definition
 Snake::Snake()
 {
-	heading = {1,0,0,0};//north, south,east,west google enum class c++
-	snakeBody = new SnakeBody[2];
+	heading = Heading::north;//north, south,east,west google enum class c++
+	//https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
+	//SnakeBody* snakeBody = new SnakeBody[2];
+	snakeBody = new SnakeBody[2];//snakeBody is a pointer from snake.h
+	
 	snakeBodySize = 7;
 	//do more?
 	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
@@ -63,4 +67,8 @@ Snake::Snake()
 			*/
 }
 
-// User-Defined Destructor
+//Destructor
+Snake::~Snake()
+{
+	delete[]snakeBody;
+}

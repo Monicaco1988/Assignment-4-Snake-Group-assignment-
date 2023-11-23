@@ -3,4 +3,4 @@
 #include "Play.h"
 #include "SnakeBody.h"
 //author: gregitator, enum
-enum class Heading { nourth, south, west, east }; // enum class
+enum class Heading { north, south, west, east }; // enum class
