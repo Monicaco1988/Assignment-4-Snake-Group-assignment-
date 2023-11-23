@@ -5,7 +5,9 @@
 //"Loops over all the snake parts and draws them"
 void Snake::Draw()
 {
-
+	for (int i = 0; i < snakeBodySize; i++) {
+		Play::DrawCircle(snakeBody.pos, 10, Play::cWhite);
+	}
 }
 //"Checks for user input via the arrow keys, and sets the heading of the snake"
 void Snake::HandleInput()
@@ -48,7 +50,31 @@ void Snake::HandleInput()
 //Moves the part at index 0 (head) along the heading of the snake by updating its position.
 void Snake::Move()
 {
-
+	for (int i = snakeBodySize-1; i > 0; i++) {
+		snakeBody[i] = snakeBody[i - 1];
+		if (index 0) //move head
+		{
+			//north
+			if (heading == Heading::north) 
+			{
+				snakeBody[i] = move;
+				//move head north.
+			}
+			if (heading == Heading::south) 
+			{
+				snakeBody[i] = move;
+				//move head south.
+			}
+			if (heading == Heading::west) {
+				snakeBody[i] = move;
+				//move head west.
+			}
+			if (heading == Heading::east) {
+				snakeBody[i] = move;
+				//move head east.
+			}
+		}
+	}
 }
 //constructor definition
 Snake::Snake()
@@ -57,8 +83,7 @@ Snake::Snake()
 	//https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 	//SnakeBody* snakeBody = new SnakeBody[2];
 	snakeBody = new SnakeBody[2];//snakeBody is a pointer from snake.h
-	
-	snakeBodySize = 7;
+	snakeBodySize = 2;
 	//do more?
 	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
 			/*constructor
@@ -66,7 +91,6 @@ Snake::Snake()
 			Make sure you also create a destructor that deletes any allocated memory.
 			*/
 }
-
 //Destructor
 Snake::~Snake()
 {
