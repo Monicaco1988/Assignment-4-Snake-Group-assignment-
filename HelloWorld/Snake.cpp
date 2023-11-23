@@ -6,7 +6,8 @@
 void Snake::Draw()
 {
 	for (int i = 0; i < snakeBodySize; i++) {
-		Play::DrawCircle(snakeBody.pos, 10, Play::cWhite);
+		//Play::DrawCircle(SnakeBody::position, 10, Play::cWhite);
+		Play::DrawCircle(snakeBody[i].position, 10, Play::cWhite);
 	}
 }
 //"Checks for user input via the arrow keys, and sets the heading of the snake"
@@ -50,7 +51,7 @@ void Snake::HandleInput()
 //Moves the part at index 0 (head) along the heading of the snake by updating its position.
 void Snake::Move()
 {
-	for (int i = snakeBodySize-1; i > 0; i++) {
+	/*for (int i = snakeBodySize - 1; i > 0; i++) {
 		snakeBody[i] = snakeBody[i - 1];
 		if (index 0) //move head
 		{
@@ -75,15 +76,22 @@ void Snake::Move()
 			}
 		}
 	}
+	*/
 }
 //constructor definition
 Snake::Snake()
 {
+
+	//Snake snake();
 	heading = Heading::north;//north, south,east,west google enum class c++
 	//https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-	//SnakeBody* snakeBody = new SnakeBody[2];
+	//SnakeBody* snakeBody = new SnakeBody[2];	
 	snakeBody = new SnakeBody[2];//snakeBody is a pointer from snake.h
 	snakeBodySize = 2;
+	for (int i = 0; i < snakeBodySize; i++)
+	{
+		snakeBody[i] = SnakeBody(); //new SnakeBody[i];
+	}
 	//do more?
 	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
 			/*constructor

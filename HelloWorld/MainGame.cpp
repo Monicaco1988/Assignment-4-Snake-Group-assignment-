@@ -2,12 +2,12 @@
 #define PLAY_USING_GAMEOBJECT_MANAGER
 #include "Play.h"
 #include "Apple.h"
-
+#include "snake.h"
 int DISPLAY_WIDTH = 640;
 int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
 
-
+Snake snake = Snake();
 
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
@@ -19,9 +19,9 @@ void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer(Play::cBlack);
-	
+		
 	SpawnApple();
-
+	snake.Draw();
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
 }
