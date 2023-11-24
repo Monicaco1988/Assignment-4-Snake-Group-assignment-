@@ -20,24 +20,24 @@ void Snake::HandleInput()//user Björn fixed movement
 {
 	// find enum or...
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);
-	if (Play::KeyDown(VK_UP) && snakeBody[0].position.y <= snakeBody[1].position.y) // Added a feature that the snake can't return
+	if (Play::KeyPressed(VK_UP) && snakeBody[0].position.y <= snakeBody[1].position.y) // Added a feature that the snake can't return
 	{
 		heading = Heading::north; 
 		//obj_agent8.velocity = { 0, -4 };
 		//Play::SetSprite(obj_agent8, "agent8_climb", 0.25f);
 	}
-	else if (Play::KeyDown(VK_DOWN) && snakeBody[0].position.y >= snakeBody[1].position.y)
+	else if (Play::KeyPressed(VK_DOWN) && snakeBody[0].position.y >= snakeBody[1].position.y)
 	{
 		heading = Heading::south;
 		//obj_agent8.acceleration = { 0, 1 };
 		//Play::SetSprite(obj_agent8, "agent8_fall", 0);
 	}
-	else if (Play::KeyDown(VK_RIGHT) && snakeBody[0].position.x >= snakeBody[1].position.x)
+	else if (Play::KeyPressed(VK_RIGHT) && snakeBody[0].position.x >= snakeBody[1].position.x)
 	{
 		heading = Heading::east;
 
 	}
-	else if (Play::KeyDown(VK_LEFT) && snakeBody[0].position.x <= snakeBody[1].position.x)
+	else if (Play::KeyPressed(VK_LEFT) && snakeBody[0].position.x <= snakeBody[1].position.x)
 	{
 		heading = Heading::west;
 
@@ -47,23 +47,21 @@ void Snake::HandleInput()//user Björn fixed movement
 		for (int i = snakeBodySize - 1; i >= 0; i--)
 		{
 			
-			
 			if (heading == Heading::north)
 			{
-					
-
 				if (snakeBody[0].position.y <= 10) // User Edmin
 				{
-					snakeBody[0].position = { snakeBody[0].position.x, 350 };
+					snakeBody[0].position = { snakeBody[0].position.x, 370 };
 				};
 			}
+
 			else if(heading == Heading::south)
 			{
 					
 				
 				if (snakeBody[0].position.y > 330) // User Edmin
 				{
-					snakeBody[0].position = { snakeBody[0].position.x, 10 };
+					snakeBody[0].position = { snakeBody[0].position.x, -10 };
 				};
 			}
 
@@ -73,7 +71,7 @@ void Snake::HandleInput()//user Björn fixed movement
 				
 				if (snakeBody[0].position.x <= 10) // User Edmin
 				{
-					snakeBody[0].position = {630, snakeBody[0].position.y};
+					snakeBody[0].position = {650, snakeBody[0].position.y};
 				};
 			}
 			else if (heading == Heading::east)
@@ -81,7 +79,7 @@ void Snake::HandleInput()//user Björn fixed movement
 				
 				if (snakeBody[0].position.x > 630) // User Edmin
 				{
-					snakeBody[0].position = { 10, snakeBody[0].position.y };
+					snakeBody[0].position = { -10, snakeBody[0].position.y };
 				};
 			}
 
@@ -108,12 +106,14 @@ void Snake::Move()//user Björn fixed movement
 		if (i==1) //move head
 		{
 			//north
-			if (heading == Heading::north) 
+
+			if (heading == Heading::north && snakeBody[0].position.y > 10)
 			{
 				//snakeBody[i].position.y-=20;//one grid up movement
 				//move head north.
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
+					
 					if (i != 0) {
 						snakeBody[i].position = snakeBody[i - 1].position;
 					}
@@ -124,7 +124,8 @@ void Snake::Move()//user Björn fixed movement
 
 				}
 			}
-			if (heading == Heading::south)
+			
+			if (heading == Heading::south && snakeBody[0].position.y < 340)
 			{
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
@@ -139,7 +140,7 @@ void Snake::Move()//user Björn fixed movement
 				}
 				//move head south.
 			}
-			if (heading == Heading::west) {
+			if (heading == Heading::west && snakeBody[0].position.x > 10) {
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
 					if (i != 0) {
@@ -154,7 +155,7 @@ void Snake::Move()//user Björn fixed movement
 				}
 				//move head west.
 			}
-			if (heading == Heading::east) {
+			if (heading == Heading::east && snakeBody[0].position.x < 640) {
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
 					if (i != 0) {
