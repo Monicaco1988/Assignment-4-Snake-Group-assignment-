@@ -16,6 +16,8 @@ public:
 	void Draw();
 	void HandleInput();
 	void Move();
+	void AddPart();
+	Apple *Collide(Apple *applePtr);
 	Snake();//constructor declaration
 	//{ }//need default?
 	~Snake();//destructor
