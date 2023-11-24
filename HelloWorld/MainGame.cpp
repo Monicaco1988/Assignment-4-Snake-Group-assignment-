@@ -8,6 +8,7 @@ int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
 int frameCount = 0;
 Snake snake = Snake();
+Apple applePtr;
 
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
@@ -29,12 +30,12 @@ bool MainGameUpdate(float elapsedTime)
 	//	};
 	//};
 
-	SpawnApple();
+	applePtr = SpawnApple();
 	snake.Draw();
+	snake.Collide(applePtr);
 	if (frameCount >= 10) {
 		snake.HandleInput();
 		snake.Move();
-		//snake.Collide(apple);
 		frameCount = 0;
 	}
 	Play::PresentDrawingBuffer();

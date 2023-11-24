@@ -1,14 +1,14 @@
 #include "Apple.h"
 // User Edmin 
-int posX = 10; // User Edmin Initierar äpplet längst upp till höger
-int posY = 10;
+int posX = 50; // User Edmin Initierar äpplet längst upp till höger
+int posY = 50;
 
 void Apple::Draw() 
 {
 	Play::DrawCircle(circlePosition, 10, Play::cRed);
 };
 
-void SpawnApple()
+Apple SpawnApple()
 {
 
 	Apple apple = Apple(posX, posY); // definiera apple som object från constr.
@@ -21,4 +21,5 @@ void SpawnApple()
 		posX = apple.x;
 		posY = apple.y;
 	}
+	return apple;
 };

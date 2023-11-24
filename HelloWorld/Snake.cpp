@@ -189,7 +189,7 @@ void Snake::AddPart()
 	delete[] snakeBody;
 	snakeBody = newArr;
 	snakeBodySize++;
-	snakeBody[snakeBodySize].position = snakeBody[snakeBodySize - 1].position;//verify if correct
+	snakeBody[snakeBodySize-1].position = snakeBody[snakeBodySize - 2].position;//verify if correct
 }
 
 /*author: gregitator=Johan:
@@ -198,19 +198,24 @@ It should return a boolean to report the result of the check.
 If a collision happens, the AddPart method is called.
 Take a look in the `Play.h` header and inspect the Play::IsColliding function to understand how you can check for collisions between two circles."
 */
-void Snake::Collide(Apple* applePtr)
+void Snake::Collide(Apple applePtr)
 {
 	//two circle collision. 
 	bool res = false;
 	//Play::IsColliding
 	//ok to copy? from the header play.h in isColliding
-	//int xDiff = int(applePtr.posX) - int(snakeBody[0].position.x);
-	//int yDiff = int(applePtr.posY) - int(snakeBody[0].position.y);
-	//int radii = snakeBody[0].radius + applePtr.radius;
+	int xDiff = int(applePtr.x) - int(snakeBody[0].position.x);
+	int yDiff = int(applePtr.y) - int(snakeBody[0].position.y);
+	int  i = snakeBody[0].position.y;
+	int  a = applePtr.y;
+	int radii = 10 + 10;
+	int  j = snakeBody[0].position.x;
+	int  b = applePtr.x;
 	// Game progammers don't do square root!
-	//res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
+	res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
 	if (res) {
 		AddPart();
+		SpawnApple();
 	}
 }
 //TODO
