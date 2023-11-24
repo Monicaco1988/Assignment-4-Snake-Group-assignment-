@@ -31,14 +31,6 @@ Apple *SpawnApple(bool random)
 	//below does not happen
 	Apple *apple = new Apple(posX, posY); // definiera apple som object från constr.
 	apple->Draw();
-
-	if (Play::KeyPressed(VK_SPACE))
-	{
-		Apple *apple = new Apple(); // definiera apple som object från constr.
-		apple->Draw();
-		posX = apple->x;
-		posY = apple->y;
-	}
 	return apple;
 
 

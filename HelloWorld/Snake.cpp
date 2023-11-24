@@ -101,7 +101,7 @@ void Snake::HandleInput()//user Björn fixed movement
 //Ex. the snake part at index 6 will take the position of the part at index 5, 
 //which takes the position of the part at index 4, etc.
 //Moves the part at index 0 (head) along the heading of the snake by updating its position.
-void Snake::Move()
+void Snake::Move()//user Björn fixed movement
 {
 	for (int i = snakeBodySize - 1; i > 0; i--) {
 		
