@@ -4,7 +4,7 @@
 class SnakeBody // user Björn
 {
 private:
-	Play::Colour colour = {float(Play::RandomRollRange(0, 256)),float(Play::RandomRollRange(0, 256)) ,float(Play::RandomRollRange(0, 256)) };
+	Play::Colour colour = {float(Play::RandomRollRange(60, 256)),float(Play::RandomRollRange(60, 256)) ,float(Play::RandomRollRange(60, 256)) };
 public:
 	Point2D position;
 	SnakeBody() {
