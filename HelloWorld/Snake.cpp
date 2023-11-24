@@ -9,9 +9,10 @@ void Snake::Draw()
 {
 	for (int i = 0; i < snakeBodySize; i++) {
 		//Play::DrawCircle(SnakeBody::position, 10, Play::cWhite);
-		Play::DrawCircle(snakeBody[i].position, 10, snakeBody[i].GetColour());
-		//DrawSnakeParts(snakeBody[i]);
+		//Play::DrawCircle(snakeBody[i].position, 10, snakeBody[i].GetColour());
+		DrawSnakeParts(snakeBody[i]);
 	}
+
 }
 //"Checks for user input via the arrow keys, and sets the heading of the snake"
 void Snake::HandleInput()//user Björn fixed movement
@@ -105,7 +106,7 @@ void Snake::HandleInput()//user Björn fixed movement
 void Snake::Move()
 {
 	for (int i = snakeBodySize - 1; i > 0; i--) {
-		snakeBody[i] = snakeBody[i - 1];
+		
 		if (i==1) //move head
 		{
 			//north
@@ -204,11 +205,8 @@ Apple Snake::Collide(Apple applePtr)
 	//ok to copy? from the header play.h in isColliding
 	int xDiff = int(applePtr.x) - int(snakeBody[0].position.x);
 	int yDiff = int(applePtr.y) - int(snakeBody[0].position.y);
-	int  i = snakeBody[0].position.y;
-	int  a = applePtr.y;
 	int radii = 10 + 10;
-	int  j = snakeBody[0].position.x;
-	int  b = applePtr.x;
+
 	// Game progammers don't do square root!
 	res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
 	if (res) {
@@ -236,8 +234,6 @@ Snake::Snake()
 	for (int i = 0; i < snakeBodySize; i++)
 	{
 		snakeBody[i] = SnakeBody();
-		Play::Colour col = { float(Play::RandomRollRange(0, 256)),float(Play::RandomRollRange(0, 256)) ,float(Play::RandomRollRange(0, 256)) };
-		snakeBody[i].SetColour(col);
 		//new SnakeBody[i];
 
 	}
@@ -248,7 +244,7 @@ Snake::Snake()
 	//do more?
 	//		SnakeBody* snakeBody = new SnakeBody();//make it an array
 			/*constructor
-			The constructor should automatically setup the snake to have two initial snake parts.
+			//The constructor should automatically setup the snake to have two initial snake parts.
 			Make sure you also create a destructor that deletes any allocated memory.
 			*/
 }
