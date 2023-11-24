@@ -59,7 +59,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			{
 					
 				
-				if (snakeBody[0].position.y > 330) // User Edmin
+				if (snakeBody[0].position.y >= 350) // User Edmin
 				{
 					snakeBody[0].position = { snakeBody[0].position.x, -10 };
 				};
@@ -77,7 +77,7 @@ void Snake::HandleInput()//user Björn fixed movement
 			else if (heading == Heading::east)
 			{
 				
-				if (snakeBody[0].position.x > 630) // User Edmin
+				if (snakeBody[0].position.x >= 630) // User Edmin
 				{
 					snakeBody[0].position = { -10, snakeBody[0].position.y };
 				};
@@ -125,7 +125,7 @@ void Snake::Move()//user Björn fixed movement
 				}
 			}
 			
-			if (heading == Heading::south && snakeBody[0].position.y < 340)
+			if (heading == Heading::south && snakeBody[0].position.y < 350)
 			{
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
@@ -155,7 +155,7 @@ void Snake::Move()//user Björn fixed movement
 				}
 				//move head west.
 			}
-			if (heading == Heading::east && snakeBody[0].position.x < 640) {
+			if (heading == Heading::east && snakeBody[0].position.x < 630) {
 				for (int i = snakeBodySize - 1; i >= 0; i--)
 				{
 					if (i != 0) {
