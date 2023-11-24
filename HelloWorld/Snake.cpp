@@ -46,14 +46,11 @@ void Snake::HandleInput()//user Björn fixed movement
 	{
 		for (int i = snakeBodySize - 1; i >= 0; i--)
 		{
-			if (i != 0) {
-				snakeBody[i].position = snakeBody[i - 1].position;
-			}
 			else
 			{
 				if (heading == Heading::north)
 				{
-					snakeBody[i].position -= {0, pixelsPerFrame};
+					
 
 					if (snakeBody[0].position.y <= 10) // User Edmin
 					{
@@ -62,7 +59,7 @@ void Snake::HandleInput()//user Björn fixed movement
 				}
 				else if(heading == Heading::south)
 				{
-					snakeBody[i].position += {0, pixelsPerFrame};
+					
 					
 					if (snakeBody[0].position.y > 330) // User Edmin
 					{
@@ -72,7 +69,7 @@ void Snake::HandleInput()//user Björn fixed movement
 
 				else if (heading == Heading::west)
 				{
-					snakeBody[i].position -= {pixelsPerFrame, 0};
+					
 					
 					if (snakeBody[0].position.x <= 10) // User Edmin
 					{
@@ -81,13 +78,14 @@ void Snake::HandleInput()//user Björn fixed movement
 				}
 				else if (heading == Heading::east)
 				{
-					snakeBody[i].position += {pixelsPerFrame, 0};
+					
+					if (snakeBody[0].position.x > 630) // User Edmin
+					{
+						snakeBody[0].position = { 10, snakeBody[i].position.y };
+					};
 				}
 
-				if (snakeBody[0].position.x > 630) // User Edmin
-				{
-					snakeBody[0].position = { 10, snakeBody[i].position.y };
-				};
+
 			}
 
 		}
