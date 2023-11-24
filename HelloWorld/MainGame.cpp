@@ -14,6 +14,7 @@ Apple applePtr;
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
 	Play::CreateManager( DISPLAY_WIDTH, DISPLAY_HEIGHT, DISPLAY_SCALE );
+	applePtr = SpawnApple(false);
 }
 
 // Called by PlayBuffer every frame (60 times a second!)
@@ -30,9 +31,12 @@ bool MainGameUpdate(float elapsedTime)
 	//	};
 	//};
 
-	applePtr = SpawnApple();
+	//applePtr = SpawnApple(false);//don´t spawn new apple every frame, spawn new in maingameentry, 
+	// then in collide, but draw apple randomized one time in collide, 
+	// todo? wait until snake goes out of apple grid to call collide again, and draw apple also in maingameupdate. 
+	applePtr.Draw();
 	snake.Draw();
-	snake.Collide(applePtr);
+	applePtr = snake.Collide(applePtr);
 	if (frameCount >= 10) {
 		snake.HandleInput();
 		snake.Move();

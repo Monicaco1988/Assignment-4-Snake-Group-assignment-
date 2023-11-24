@@ -196,7 +196,7 @@ It should return a boolean to report the result of the check.
 If a collision happens, the AddPart method is called.
 Take a look in the `Play.h` header and inspect the Play::IsColliding function to understand how you can check for collisions between two circles."
 */
-void Snake::Collide(Apple applePtr)
+Apple Snake::Collide(Apple applePtr)
 {
 	//two circle collision. 
 	bool res = false;
@@ -213,8 +213,11 @@ void Snake::Collide(Apple applePtr)
 	res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
 	if (res) {
 		AddPart();
-		SpawnApple();
+				applePtr = SpawnApple(true);
+		applePtr.Draw();
+		return applePtr;
 	}
+	return applePtr;
 }
 //TODO
 //"The Apple should be dynamically allocated, and deleted and 

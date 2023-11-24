@@ -34,7 +34,7 @@ public:
 
 };
 
-Apple SpawnApple();
+Apple SpawnApple(bool random);
 
 
 

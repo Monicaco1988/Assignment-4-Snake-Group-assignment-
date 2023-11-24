@@ -8,9 +8,22 @@ void Apple::Draw()
 	Play::DrawCircle(circlePosition, 10, Play::cRed);
 };
 
-Apple SpawnApple()
+Apple SpawnApple(bool random)
 {
-
+	if (!random) {
+		Apple apple = Apple(posX, posY); // definiera apple som object från constr.
+		//apple.Draw(); call draw in maingameupdate
+		return apple;
+	}
+	else
+	{
+		Apple apple = Apple(); // definiera apple som object från constr.
+		//apple.Draw(); //call draw in maingameupdate
+		posX = apple.x;
+		posY = apple.y;
+		return apple;
+	}
+	//below does not happen
 	Apple apple = Apple(posX, posY); // definiera apple som object från constr.
 	apple.Draw();
 
@@ -22,4 +35,6 @@ Apple SpawnApple()
 		posY = apple.y;
 	}
 	return apple;
+
+
 };
