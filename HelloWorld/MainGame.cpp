@@ -34,6 +34,7 @@ bool MainGameUpdate(float elapsedTime)
 	if (frameCount >= 6) {
 		snake.HandleInput();
 		snake.Move();
+		//snake.Collide(apple);
 		frameCount = 0;
 	}
 	Play::PresentDrawingBuffer();
