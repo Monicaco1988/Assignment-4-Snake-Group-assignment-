@@ -209,13 +209,18 @@ Apple Snake::Collide(Apple applePtr)
 
 	// Game progammers don't do square root!
 	res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
+	
 	if (res) {
 		AddPart();
-				applePtr = SpawnApple(true);
+		applePtr = SpawnApple(true);
 		applePtr.Draw();
 		return applePtr;
 	}
 	return applePtr;
+//bug the snake head moves past the apple grid? It moves too fast? 2 grids at a time 
+// pixelsperframe=10 instead of 20 works but is wrong?
+// then the snakeparts are inside each other. 
+	
 }
 //TODO
 //"The Apple should be dynamically allocated, and deleted and 

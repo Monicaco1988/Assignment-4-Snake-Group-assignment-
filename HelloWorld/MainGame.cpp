@@ -32,8 +32,7 @@ bool MainGameUpdate(float elapsedTime)
 	//};
 
 	//applePtr = SpawnApple(false);//don´t spawn new apple every frame, spawn new in maingameentry, 
-	// then in collide, but draw apple randomized one time in collide, 
-	// todo? wait until snake goes out of apple grid to call collide again, and draw apple also in maingameupdate. 
+	// then in collide, but draw apple randomized one time in collide, and draw apple also in maingameupdate. 
 	applePtr.Draw();
 	snake.Draw();
 	applePtr = snake.Collide(applePtr);
