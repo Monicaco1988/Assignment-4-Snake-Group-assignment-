@@ -13,6 +13,7 @@ Apple::~Apple()
 }
 ;
 
+
 Apple *SpawnApple(bool random)
 {
 	if (!random) {
