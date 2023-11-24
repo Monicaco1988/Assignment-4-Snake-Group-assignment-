@@ -8,7 +8,7 @@ int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
 int frameCount = 0;
 Snake snake = Snake();
-Apple applePtr;
+//Apple *applePtr;
 
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
@@ -34,7 +34,7 @@ bool MainGameUpdate(float elapsedTime)
 	//applePtr = SpawnApple(false);//don´t spawn new apple every frame, spawn new in maingameentry, 
 	// then in collide, but draw apple randomized one time in collide, and draw apple also in maingameupdate. 
 	
-	applePtr.Draw();
+	applePtr->Draw();
 	snake.Draw();
 	applePtr = snake.Collide(applePtr);
 	if (frameCount >= 10) {

@@ -31,10 +31,10 @@ public:
 	};
 	
 	void Draw();
-
+	~Apple();
 };
-
-Apple SpawnApple(bool random);
+static Apple* applePtr; 
+Apple* SpawnApple(bool random);
 
 
 

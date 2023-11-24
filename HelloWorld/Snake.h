@@ -17,7 +17,7 @@ public:
 	void HandleInput();
 	void Move();
 	void AddPart();
-	Apple Collide(Apple applePtr);
+	Apple *Collide(Apple *applePtr);
 	Snake();//constructor declaration
 	//{ }//need default?
 	~Snake();//destructor

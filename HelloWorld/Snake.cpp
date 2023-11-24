@@ -195,14 +195,14 @@ It should return a boolean to report the result of the check.
 If a collision happens, the AddPart method is called.
 Take a look in the `Play.h` header and inspect the Play::IsColliding function to understand how you can check for collisions between two circles."
 */
-Apple Snake::Collide(Apple applePtr)
+Apple *Snake::Collide(Apple *applePtr)
 {
 	//two circle collision. 
 	bool res = false;
 	//Play::IsColliding
 	//ok to copy? from the header play.h in isColliding
-	int xDiff = int(applePtr.x) - int(snakeBody[0].position.x);
-	int yDiff = int(applePtr.y) - int(snakeBody[0].position.y);
+	int xDiff = int(applePtr->x) - int(snakeBody[0].position.x);
+	int yDiff = int(applePtr->y) - int(snakeBody[0].position.y);
 	int radii = 10 + 10;
 
 	// Game progammers don't do square root!
@@ -210,12 +210,13 @@ Apple Snake::Collide(Apple applePtr)
 	
 	if (res) {
 		AddPart();
+		delete applePtr;
 		applePtr = SpawnApple(true);
-		applePtr.Draw();
+		applePtr->Draw();
 		return applePtr;
 	}
 	return applePtr;
-//bug the snake head moves past the apple grid? It moves too fast? 2 grids at a time 
+//bug solved the snake head moves past the apple grid? It moves too fast? 2 grids at a time 
 // pixelsperframe=10 instead of 20 works but is wrong?
 // then the snakeparts are inside each other. 
 	
