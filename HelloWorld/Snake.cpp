@@ -215,6 +215,23 @@ Apple *Snake::Collide(Apple *applePtr)
 		applePtr->Draw();
 		return applePtr;
 	}
+	for (int i = 1; i < snakeBodySize; i++)
+	{
+		if (snakeBody[0].position == snakeBody[i].position) {
+			Sleep(1000);
+			delete[] snakeBody;
+			snakeBody = new SnakeBody[2];
+			snakeBodySize = 2;
+			for (int i = 0; i < snakeBodySize; i++)
+			{
+				snakeBody[i] = SnakeBody();
+				//new SnakeBody[i];
+
+			}
+			snakeBody[1].position.y += 20;
+			heading = Heading::north;
+		}
+	}
 	return applePtr;
 //bug solved the snake head moves past the apple grid? It moves too fast? 2 grids at a time 
 // pixelsperframe=10 instead of 20 works but is wrong?
