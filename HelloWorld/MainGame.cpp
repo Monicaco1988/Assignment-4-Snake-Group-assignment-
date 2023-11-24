@@ -20,11 +20,21 @@ bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer(Play::cBlack);
 
+	//for (int k = 10; k < 660; k += 20) // check to see where the apples should spawn and where the anake should move
+	//{
+	//	for (int i = 10; i < 380; i += 20)
+	//	{
+	//		Apple apple = Apple(k, i); // definiera apple som object från constr.
+	//		apple.Draw();
+	//	};
+	//};
+
 	SpawnApple();
 	snake.Draw();
 	if (frameCount >= 10) {
 		snake.HandleInput();
 		snake.Move();
+		//snake.Collide(apple);
 		frameCount = 0;
 	}
 	Play::PresentDrawingBuffer();

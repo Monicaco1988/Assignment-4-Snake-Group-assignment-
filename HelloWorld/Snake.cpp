@@ -19,30 +19,120 @@ void Snake::HandleInput()//user Björn fixed movement
 {
 	// find enum or...
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);
-	if (Play::KeyDown(VK_UP))
+	if (Play::KeyDown(VK_UP) && snakeBody[0].position.y >= snakeBody[1].position.y) // Added a feature that the snake can't return
 	{
 		heading = Heading::north; 
-		
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position -= {0, pixelsPerFrame};
+			}
+
+		}
 		//obj_agent8.velocity = { 0, -4 };
 		//Play::SetSprite(obj_agent8, "agent8_climb", 0.25f);
 	}
-	else if (Play::KeyDown(VK_DOWN))
+	else if (Play::KeyDown(VK_DOWN) && snakeBody[0].position.y <= snakeBody[1].position.y)
 	{
 		heading = Heading::south;
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position += {0, pixelsPerFrame};
+			}
+
+		}
 		//obj_agent8.acceleration = { 0, 1 };
 		//Play::SetSprite(obj_agent8, "agent8_fall", 0);
 	}
-	else if (Play::KeyDown(VK_RIGHT))
+	else if (Play::KeyDown(VK_RIGHT) && snakeBody[0].position.x <= snakeBody[1].position.x)
 	{
 		heading = Heading::east;
+		for (int i = snakeBodySize-1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position += {pixelsPerFrame, 0};
+			}
+			
+		}
 	}
-	else if (Play::KeyDown(VK_LEFT))
+	else if (Play::KeyDown(VK_LEFT) && snakeBody[0].position.x >= snakeBody[1].position.x)
 	{
 		heading = Heading::west;
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				snakeBody[i].position -= {pixelsPerFrame, 0};
+				
+			}
+
+		}
 	}
 	else
 	{
+		for (int i = snakeBodySize - 1; i >= 0; i--)
+		{
+			if (i != 0) {
+				snakeBody[i].position = snakeBody[i - 1].position;
+			}
+			else
+			{
+				if (heading == Heading::north)
+				{
+					snakeBody[i].position -= {0, pixelsPerFrame};
 
+					if (snakeBody[0].position.y <= 10) // User Edmin
+					{
+						snakeBody[0].position = { snakeBody[0].position.x, 350 };
+					};
+				}
+				else if(heading == Heading::south)
+				{
+					snakeBody[i].position += {0, pixelsPerFrame};
+					
+					if (snakeBody[0].position.y > 330) // User Edmin
+					{
+						snakeBody[0].position = { snakeBody[0].position.x, 10 };
+					};
+				}
+
+				else if (heading == Heading::west)
+				{
+					snakeBody[i].position -= {pixelsPerFrame, 0};
+					
+					if (snakeBody[0].position.x <= 10) // User Edmin
+					{
+						snakeBody[0].position = {630, snakeBody[i].position.y};
+					};
+				}
+				else if (heading == Heading::east)
+				{
+					snakeBody[i].position += {pixelsPerFrame, 0};
+				}
+
+				if (snakeBody[0].position.x > 630) // User Edmin
+				{
+					snakeBody[0].position = { 10, snakeBody[i].position.y };
+				};
+			}
+
+		}
 		//Play::SetSprite(obj_agent8, "agent8_hang", 0.02f);
 		//obj_agent8.velocity *= 0.5f;
 		//obj_agent8.acceleration = { 0, 0 };
@@ -66,59 +156,19 @@ void Snake::Move()
 			{
 				//snakeBody[i].position.y-=20;//one grid up movement
 				//move head north.
-				for (int i = snakeBodySize - 1; i >= 0; i--)
-				{
-					if (i != 0) {
-						snakeBody[i].position = snakeBody[i - 1].position;
-					}
-					else
-					{
-						snakeBody[i].position -= {0, pixelsPerFrame};
-					}
-
-				}
+				snakeBody[i].position.y -= 20;
 			}
 			if (heading == Heading::south)
 			{
-				for (int i = snakeBodySize - 1; i >= 0; i--)
-				{
-					if (i != 0) {
-						snakeBody[i].position = snakeBody[i - 1].position;
-					}
-					else
-					{
-						snakeBody[i].position += {0, pixelsPerFrame};
-					}
-
-				}
+				snakeBody[i].position.y+=20;
 				//move head south.
 			}
 			if (heading == Heading::west) {
-				for (int i = snakeBodySize - 1; i >= 0; i--)
-				{
-					if (i != 0) {
-						snakeBody[i].position = snakeBody[i - 1].position;
-					}
-					else
-					{
-						snakeBody[i].position -= {pixelsPerFrame, 0};
-					}
-
-				}
+				snakeBody[i].position.x-= 20;
 				//move head west.
 			}
 			if (heading == Heading::east) {
-				for (int i = snakeBodySize - 1; i >= 0; i--)
-				{
-					if (i != 0) {
-						snakeBody[i].position = snakeBody[i - 1].position;
-					}
-					else
-					{
-						snakeBody[i].position += {pixelsPerFrame, 0};
-					}
-
-				}
+				snakeBody[i].position.x+=20;
 				//move head east.
 			}
 		}
@@ -139,9 +189,33 @@ void Snake::AddPart()
 	delete[] snakeBody;
 	snakeBody = newArr;
 	snakeBodySize++;
-	snakeBody[snakeBodySize].position = snakeBody[snakeBodySize - 1].position;
+	snakeBody[snakeBodySize].position = snakeBody[snakeBodySize - 1].position;//verify if correct
 }
 
+/*author: gregitator=Johan:
+"Takes an `Apple` pointer as argument and checks if the head of the snake collides with the apple.
+It should return a boolean to report the result of the check.
+If a collision happens, the AddPart method is called.
+Take a look in the `Play.h` header and inspect the Play::IsColliding function to understand how you can check for collisions between two circles."
+*/
+void Snake::Collide(Apple* applePtr)
+{
+	//two circle collision. 
+	bool res = false;
+	//Play::IsColliding
+	//ok to copy? from the header play.h in isColliding
+	//int xDiff = int(applePtr.posX) - int(snakeBody[0].position.x);
+	//int yDiff = int(applePtr.posY) - int(snakeBody[0].position.y);
+	//int radii = snakeBody[0].radius + applePtr.radius;
+	// Game progammers don't do square root!
+	//res = ((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
+	if (res) {
+		AddPart();
+	}
+}
+//TODO
+//"The Apple should be dynamically allocated, and deleted and 
+// reallocated (at a random position) when the snake collides with it."
 
 //constructor definition
 Snake::Snake()

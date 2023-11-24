@@ -32,8 +32,6 @@ public:
 	
 	void Draw();
 
-	void Draw2();
-
 };
 
 void SpawnApple();
