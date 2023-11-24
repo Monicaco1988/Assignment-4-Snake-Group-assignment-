@@ -22,5 +22,5 @@ public:
 	}
 };
 //Takes a snakeBody and a distans mutilplier from the first snake, this is easiest done in a loop to fix this
-void DrawSnakeParts(SnakeBody snakeBody, int multiplierDistans);
+void DrawSnakeParts(SnakeBody snakeBody);
 

@@ -9,11 +9,13 @@ void Snake::Draw()
 {
 	for (int i = 0; i < snakeBodySize; i++) {
 		//Play::DrawCircle(SnakeBody::position, 10, Play::cWhite);
-		Play::DrawCircle(snakeBody[i].position, 10, Play::cWhite);
+		Play::DrawCircle(snakeBody[i].position, 10, snakeBody[i].GetColour());
+		//DrawSnakeParts(snakeBody[i]);
 	}
 }
 //"Checks for user input via the arrow keys, and sets the heading of the snake"
 void Snake::HandleInput()//user Björn fixed movement
+
 {
 	// find enum or...
 	// GameObject& obj_agent8 = Play::GetGameObjectByType(TYPE_AGENT8);
@@ -153,7 +155,11 @@ Snake::Snake()
 	snakeBodySize = 2;
 	for (int i = 0; i < snakeBodySize; i++)
 	{
-		snakeBody[i] = SnakeBody(); //new SnakeBody[i];
+		snakeBody[i] = SnakeBody();
+		Play::Colour col = { float(Play::RandomRollRange(0, 256)),float(Play::RandomRollRange(0, 256)) ,float(Play::RandomRollRange(0, 256)) };
+		snakeBody[i].SetColour(col);
+		//new SnakeBody[i];
+
 	}
 	//set position of tail snakePart
 	snakeBody[1].position.y += 20;//tail to south one grid: y increases means go down

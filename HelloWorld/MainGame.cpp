@@ -22,7 +22,7 @@ bool MainGameUpdate(float elapsedTime)
 
 	SpawnApple();
 	snake.Draw();
-	if (frameCount >= 6) {
+	if (frameCount >= 10) {
 		snake.HandleInput();
 		snake.Move();
 		frameCount = 0;
