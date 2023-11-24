@@ -46,47 +46,47 @@ void Snake::HandleInput()//user Björn fixed movement
 	{
 		for (int i = snakeBodySize - 1; i >= 0; i--)
 		{
-			else
+			
+			
+			if (heading == Heading::north)
 			{
-				if (heading == Heading::north)
-				{
 					
 
-					if (snakeBody[0].position.y <= 10) // User Edmin
-					{
-						snakeBody[0].position = { snakeBody[0].position.x, 350 };
-					};
-				}
-				else if(heading == Heading::south)
+				if (snakeBody[0].position.y <= 10) // User Edmin
 				{
-					
-					
-					if (snakeBody[0].position.y > 330) // User Edmin
-					{
-						snakeBody[0].position = { snakeBody[0].position.x, 10 };
-					};
-				}
-
-				else if (heading == Heading::west)
-				{
-					
-					
-					if (snakeBody[0].position.x <= 10) // User Edmin
-					{
-						snakeBody[0].position = {630, snakeBody[i].position.y};
-					};
-				}
-				else if (heading == Heading::east)
-				{
-					
-					if (snakeBody[0].position.x > 630) // User Edmin
-					{
-						snakeBody[0].position = { 10, snakeBody[i].position.y };
-					};
-				}
-
-
+					snakeBody[0].position = { snakeBody[0].position.x, 350 };
+				};
 			}
+			else if(heading == Heading::south)
+			{
+					
+				
+				if (snakeBody[0].position.y > 330) // User Edmin
+				{
+					snakeBody[0].position = { snakeBody[0].position.x, 10 };
+				};
+			}
+
+			else if (heading == Heading::west)
+			{
+				
+				
+				if (snakeBody[0].position.x <= 10) // User Edmin
+				{
+					snakeBody[0].position = {630, snakeBody[i].position.y};
+				};
+			}
+			else if (heading == Heading::east)
+			{
+				
+				if (snakeBody[0].position.x > 630) // User Edmin
+				{
+					snakeBody[0].position = { 10, snakeBody[i].position.y };
+				};
+			}
+
+
+		
 
 		}
 		//Play::SetSprite(obj_agent8, "agent8_hang", 0.02f);
