@@ -73,7 +73,7 @@ void Snake::HandleInput()//user Björn fixed movement
 				
 				if (snakeBody[0].position.x <= 10) // User Edmin
 				{
-					snakeBody[0].position = {630, snakeBody[i].position.y};
+					snakeBody[0].position = {630, snakeBody[0].position.y};
 				};
 			}
 			else if (heading == Heading::east)
@@ -81,7 +81,7 @@ void Snake::HandleInput()//user Björn fixed movement
 				
 				if (snakeBody[0].position.x > 630) // User Edmin
 				{
-					snakeBody[0].position = { 10, snakeBody[i].position.y };
+					snakeBody[0].position = { 10, snakeBody[0].position.y };
 				};
 			}
 
